@@ -53,6 +53,11 @@ public class Sorts {
         int[] t4 = Arrays.copyOf(array, array.length);
         quickSort(t4);
         System.out.println("   Quick sort: " + Arrays.toString(t4));
+
+        // Merge sort
+        int[] t5 = Arrays.copyOf(array, array.length);
+        mergeSort(t5);
+        System.out.println("   Merge sort: " + Arrays.toString(t5));
     }
 
     /**
@@ -135,6 +140,33 @@ public class Sorts {
 
         if (j > left) {
             quickSort(array, left, j);
+        }
+    }
+
+    static void mergeSort(final int[] array) {
+        mergeSort(array, 0, array.length - 1);
+    }
+
+    static void mergeSort(final int[] array, final int left, final int right) {
+        if (left < right) {
+            final int pivot = left + (right - left) / 2;
+            mergeSort(array, left, pivot);
+            mergeSort(array, pivot + 1, right);
+
+            int i = left;
+            int j = pivot + 1;
+            int k = left;
+            final int[] copy = Arrays.copyOfRange(array, left, right + 1);
+
+            while (i <= pivot && j <= right) {
+                if (copy[i - left] < copy[j - left]) {
+                    array[k++] = copy[i++ - left];
+                } else {
+                    array[k++] = copy[j++ - left];
+                }
+            }
+
+            System.arraycopy(copy, i - left, array, k, pivot - i + 1);
         }
     }
 }
