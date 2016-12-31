@@ -48,6 +48,11 @@ public class Sorts {
         int[] t3 = Arrays.copyOf(array, array.length);
         insertSort(t3);
         System.out.println("  Insert sort: " + Arrays.toString(t3));
+
+        // Quick sort
+        int[] t4 = Arrays.copyOf(array, array.length);
+        quickSort(t4);
+        System.out.println("   Quick sort: " + Arrays.toString(t4));
     }
 
     /**
@@ -96,6 +101,40 @@ public class Sorts {
                     swapElementsByIndex(array, j, j - 1);
                 }
             }
+        }
+    }
+
+    static void quickSort(final int[] array) {
+        quickSort(array, 0, array.length - 1);
+    }
+
+    static void quickSort(final int[] array, final int left, final int right) {
+        final int pivot = array[left + (right - left) / 2];
+        int i = left;
+        int j = right;
+
+        while (i <= j) {
+            while (array[i] < pivot) {
+                i++;
+            }
+
+            while (array[j] > pivot) {
+                j--;
+            }
+
+            if (i <= j) {
+                swapElementsByIndex(array, i, j);
+                i++;
+                j--;
+            }
+        }
+
+        if (i < right) {
+            quickSort(array, i, right);
+        }
+
+        if (j > left) {
+            quickSort(array, left, j);
         }
     }
 }
