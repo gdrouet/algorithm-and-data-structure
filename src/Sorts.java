@@ -43,6 +43,11 @@ public class Sorts {
         int[] t2 = Arrays.copyOf(array, array.length);
         selectSort(t2);
         System.out.println("  Select sort: " + Arrays.toString(t2));
+
+        // Insert sort
+        int[] t3 = Arrays.copyOf(array, array.length);
+        insertSort(t3);
+        System.out.println("  Insert sort: " + Arrays.toString(t3));
     }
 
     /**
@@ -80,6 +85,16 @@ public class Sorts {
 
             if (i != min) {
                 swapElementsByIndex(array, min, i);
+            }
+        }
+    }
+
+    static void insertSort(final int[] array) {
+        for (int i = 1; i < array.length; i++) {
+            for (int j = i; j > 0; j--) {
+                if (array[j] < array[j - 1]) {
+                    swapElementsByIndex(array, j, j - 1);
+                }
             }
         }
     }
