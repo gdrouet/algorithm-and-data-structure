@@ -38,6 +38,11 @@ public class Sorts {
         int[] t1 = Arrays.copyOf(array, array.length);
         bubbleSort(t1);
         System.out.println("  Bubble sort: " + Arrays.toString(t1));
+
+        // Select sort
+        int[] t2 = Arrays.copyOf(array, array.length);
+        selectSort(t2);
+        System.out.println("  Select sort: " + Arrays.toString(t2));
     }
 
     /**
@@ -59,6 +64,22 @@ public class Sorts {
                 if (array[j - 1] > array[j]) {
                     swapElementsByIndex(array, j - 1, j);
                 }
+            }
+        }
+    }
+
+    static void selectSort(final int[] array) {
+        for (int i = 0; i < array.length; i++) {
+            int min = i;
+
+            for (int j = i + 1; j < array.length; j++) {
+                if (array[j] < array[min]) {
+                    min = j;
+                }
+            }
+
+            if (i != min) {
+                swapElementsByIndex(array, min, i);
             }
         }
     }
